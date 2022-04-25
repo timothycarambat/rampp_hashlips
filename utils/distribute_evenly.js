@@ -15,8 +15,10 @@ fs.readdir(imageDir, function (err, files) {
 
     if (isDir) {
       fs.readdir(fromPath, function (err, files) {
-        const numberOfTraits = files.length
-        const proportion = ~~(100 / numberOfTraits)
+        const validFiles = files.filter((name) => !name.includes('DS_Store'))
+
+        if (validFiles.length === 0) return
+        const proportion = ~~(100 / validFiles.length)
 
         files.forEach(function (file, _) {
           if (file.includes('DS_Store')) {
@@ -24,8 +26,8 @@ fs.readdir(imageDir, function (err, files) {
               if (err) {
                 console.error(err)
               }
-              return
             })
+            return
           }
 
           let [fileBaseName, extension] = file.split('.')
@@ -45,25 +47,4 @@ fs.readdir(imageDir, function (err, files) {
       })
     }
   })
-
 })
-// const getImages = (_dir) => {
-//   try {
-//     return fs
-//       .readdirSync(_dir)
-//       .filter((item) => {
-//         let extension = path.extname(`${_dir}${item}`);
-//         if (extension == ".png" || extension == ".jpg") {
-//           return item;
-//         }
-//       })
-//       .map((i) => {
-//         return {
-//           filename: i,
-//           path: `${_dir}/${i}`,
-//         };
-//       });
-//   } catch {
-//     return null;
-//   }
-// };
