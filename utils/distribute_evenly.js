@@ -18,7 +18,16 @@ fs.readdir(imageDir, function (err, files) {
         const numberOfTraits = files.length
         const proportion = ~~(100 / numberOfTraits)
 
-        files.forEach(function (file, index) {
+        files.forEach(function (file, _) {
+          if (file.includes('DS_Store')) {
+            fs.unlink(`${fromPath}/${file}`, (err) => {
+              if (err) {
+                console.error(err)
+              }
+              return
+            })
+          }
+
           let [fileBaseName, extension] = file.split('.')
           fileBaseName = fileBaseName.split('#')[0]
           const newFileName = `${fileBaseName}#${proportion}.${extension}`
