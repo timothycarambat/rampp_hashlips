@@ -3,11 +3,12 @@ const { MODE } = require(`${basePath}/constants/blend_mode.js`);
 const { NETWORK } = require(`${basePath}/constants/network.js`);
 
 const network = NETWORK.eth;
+const useMetadataFileExtension = false; // toggle to have metadata files end in .json or not.
 
 // General metadata for Ethereum
-const namePrefix = "Your Collection";
+const namePrefix = "Updated Name";
 const description = "Remember to replace this description";
-const baseUri = "ipfs://NewUriToReplace";
+const baseUri = "ipfs://something-novel";
 
 const solanaMetadata = {
   symbol: "YC",
@@ -42,8 +43,8 @@ const shuffleLayerConfigurations = false;
 const debugLogs = false;
 
 const format = {
-  width: 512,
-  height: 512,
+  width: 1000,
+  height: 1000,
   smoothing: false,
 };
 
@@ -119,4 +120,5 @@ module.exports = {
   solanaMetadata,
   gif,
   preview_gif,
+  useMetadataFileExtension,
 };

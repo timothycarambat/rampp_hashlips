@@ -8,6 +8,7 @@ const {
   namePrefix,
   network,
   solanaMetadata,
+  useMetadataFileExtension,
 } = require(`${basePath}/src/config.js`);
 
 // read json data
@@ -25,7 +26,7 @@ data.forEach((item) => {
     item.image = `${baseUri}/${item.edition}.png`;
   }
   fs.writeFileSync(
-    `${basePath}/build/json/${item.edition}.json`,
+    `${basePath}/build/json/${item.edition}${useMetadataFileExtension ? '.json' : ''}`,
     JSON.stringify(item, null, 2)
   );
 });

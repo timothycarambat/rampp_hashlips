@@ -9,6 +9,7 @@ const {
   namePrefix,
   description,
   baseUri,
+  useMetadataFileExtension,
 } = require(`${basePath}/src/config.js`);
 const console = require("console");
 const canvas = createCanvas(format.width, format.height);
@@ -146,7 +147,7 @@ const saveMetadata = (_loadedImageObject) => {
     compiler: "HashLips Art Engine",
   };
   fs.writeFileSync(
-    `${buildDir}/${shortName}.json`,
+    `${buildDir}/${shortName}${useMetadataFileExtension ? '.json' : ''}`,
     JSON.stringify(tempMetadata, null, 2)
   );
   metadataList.push(tempMetadata);
